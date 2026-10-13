@@ -432,7 +432,7 @@ def show_dashboard():
             color_continuous_scale="Viridis",
             zoom=3.8,
             center={"lat": 22.5937, "lon": 78.9629},
-            mapbox_style="carto-positron"
+            map_style="carto-positron"
         )
         fig_map.update_layout(height=450, margin=dict(l=0, r=0, t=10, b=10))
         st.plotly_chart(fig_map, use_container_width=True)
