@@ -107,6 +107,12 @@ def show_input_form():
     if submit_button:
         st.session_state.submit = True
 
+# Initialize session state BEFORE using it
+if "state" not in st.session_state:
+    st.session_state["state"] = None
+
+if "district" not in st.session_state:
+    st.session_state["district"] = None
 # --- Output View ---
 def show_result():
     
@@ -145,8 +151,10 @@ def show_result():
     df.rename(columns = {"Yield":f"Yield (Ton/{st.session_state.UnitOfArea})"},inplace = True)
     
     st.dataframe(df,hide_index = True)
+
     
     st.line_chart(env_data,x = "date",y =["temperature_2m_mean","precipitation_sum","relative_humidity_2m_mean","wind_speed_10m_mean"])
+
     
 # --- App Flow ---
 if page == "🌾 Crop Yield Prediction":
